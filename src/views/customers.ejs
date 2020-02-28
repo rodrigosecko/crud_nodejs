@@ -1,5 +1,67 @@
 <%-  include ('partials/_header') %>
 
-<h1>CUSTOMERS</h1>
+<pre>
+  <%= data[0].id %>
+</pre>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+          <table class="table table-striped table-inverse table-responsive">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Nro</th>
+                <th>Name</th>
+                <th>Address</th>                
+                <th>Phone</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% if (data) {%>
+                  <% for(var i=0; i < data.length; i++) {%>
+                    <tr>
+                      <td> <%= (i+1) %></td>  
+                      <td> <%= data[i].name %></td>  
+                      <td> <%= data[i].address %></td> 
+                      <td> <%= data[i].phone %></td>  
+                      <td> delete</td>  
+                    </tr>
+                  <% }%>
+                <% }%>
+
+              </tbody>
+          </table>
+            
+
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+              
+              <div class="card-body">
+                <form action="/add" method="POST">
+
+                    <div class="form-group">                  
+                      <input type="text" name="name" id="" class="form-control" placeholder="Name" aria-describedby="helpId">                  
+                    </div>
+                    <div class="form-group">                  
+                        <input type="text" name="address" id="" class="form-control" placeholder="address" aria-describedby="helpId">                  
+                      </div>
+                    <div class="form-group">                  
+                      <input type="text" name="phone" id="" class="form-control" placeholder="phone" aria-describedby="helpId">                  
+                    </div>
+                   <button type="submit" class="btn btn-primary">SAVE CUSTOMER</button>   
+                
+                </form>
+              </div>
+            </div>
+
+
+            
+
+        </div>
+
+    </div>
+</div>
+
 
 <%-  include ('partials/_footer') %>
