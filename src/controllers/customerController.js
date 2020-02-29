@@ -28,18 +28,16 @@ controller.save = (req, res) =>{
     //res.send('works');
 }
 
-controller.save = (req, res) =>{
-    const data=req.body;
-
-    req.getConnection((err, conn) => {
-        conn.query('INSERT INTO customer set ?',[data], (err, customer) => {
-            //console.log(customer);
+controller.delete = (req, res) =>{
+    const { id } = req.params;
+    req.getConnection((err, conn) =>{
+        conn.query('DELETE FROM customer WHERE id = ?', [id], (err, rows) =>{
             res.redirect('/');
         });
-    });
-
-    //console.log(req.body);
+    })
+    //console.log(req.params);
     //res.send('works');
+    
 }
 
 module.exports = controller;
