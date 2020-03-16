@@ -28,6 +28,27 @@ controller.save = (req, res) =>{
     //res.send('works');
 }
 
+controller.edit = (req, res) => {
+    const { id } = req.params;
+    req.getConnection((err, conn) => {
+        conn.query('SELECT * FROM  customer WHERE id = ?', [id], (err, customer) => {
+            res.render('customer_edit',{
+                data: customer[0]
+            })
+        });
+    });
+}
+
+controller.update = (req, res) => {
+    const { id } = req.params;
+    const newCustomer = req.body;
+    req.getConnection((err, conn) =>{
+        conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (err, rows) =>{
+            res.redirect('/');
+        });
+    })
+};
+
 controller.delete = (req, res) =>{
     const { id } = req.params;
     req.getConnection((err, conn) =>{
